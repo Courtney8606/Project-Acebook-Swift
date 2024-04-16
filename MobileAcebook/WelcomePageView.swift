@@ -36,7 +36,7 @@ struct WelcomePageView: View {
                 Spacer()
                 
                 Button("See user details") {
-getUserInfo(email: "test@email.com", password: "testPword", completion: <#T##(User?) -> Void#>)
+//getUserInfo(email: "test@email.com", password: "testPword", completion: <#T##(User?) -> Void#>)
                 }
                 .accessibilityIdentifier("signUpButton")
                 
