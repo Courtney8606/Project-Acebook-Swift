@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "makers-logo.png",
+      "filename" : "piano.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "piano.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
