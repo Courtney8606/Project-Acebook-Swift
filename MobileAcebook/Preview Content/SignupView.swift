@@ -14,11 +14,18 @@
 import SwiftUI
 
 struct SignupView: View {
+    @State private var email = ""
+    @State private var username = ""
+    @State private var password = ""
+    @State private var repassword = ""
     var body: some View {
         VStack {
             
             Text("Acebook")
                 .font(.largeTitle)
+                .frame(maxWidth: .infinity)
+                .background(Color(red:241/255, green: 148/255, blue: 138/255))
+                .padding()
             Image("piano")
                 .resizable()
                 .scaledToFit()
@@ -27,24 +34,23 @@ struct SignupView: View {
             Spacer()
             Text("Sign up")
                 .font(.title)
-                .foregroundColor(.blue)
-            //.padding(.bottom, 50)
+                .foregroundColor(.black)
                 .padding(.trailing, 200)
             
-            TextField("Enter email", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField("Enter email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.trailing, 40)
                 .padding(.leading, 40)
-            TextField("Enter username", text:/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField("Enter username", text: $username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.trailing, 40)
                 .padding(.leading, 40)
             
-            TextField("Enter password",text:/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/ )
+            TextField("Enter password",text: $password )
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.trailing, 40)
                 .padding(.leading, 40)
-            TextField("Re-enter password",text:/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+            TextField("Re-enter password",text: $repassword)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.trailing, 40)
                 .padding(.leading, 40)
@@ -52,27 +58,19 @@ struct SignupView: View {
             
             HStack {
                 Text("Upload a profile picture")
-
-                Button(/*@START_MENU_TOKEN@*/"Button"/*@END_MENU_TOKEN@*/) {
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/} //button
-                
-        
-                
-                
-            }//HStack
-            .padding(.bottom, 100)
-            
+                Button(action:{})
+                {Image("attachment-icon")}
+            }
+            .padding(.bottom, 50)
             Button("SUBMIT") {
                 /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-                
-            }// sign up button
-            
-                .padding(.bottom, 100)
+            }
+            .padding(.bottom, 50)
 
-            
-            .padding(.bottom, 100)
-            
-            
+            Link(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=URL@*/URL(string: "https://www.apple.com")!/*@END_MENU_TOKEN@*/) {
+                Text("Already have an account? Log in")
+            }
+            .padding(.bottom, 50)
             
         }
         
