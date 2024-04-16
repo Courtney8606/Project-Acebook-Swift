@@ -32,7 +32,7 @@ struct WelcomePageView: View {
                     NavigationLink(destination: SignupView()) {
                         Text("Sign Up")
                     }
-                    NavigationLink(destination: SignupView()) {
+                    NavigationLink(destination: LoginView()) {
                         Text("Log in")
                     }
                     Spacer()
