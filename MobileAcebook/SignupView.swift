@@ -67,7 +67,7 @@ struct SignupView: View {
             }
             .padding(.bottom, 50)
 
-            Link(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=URL@*/URL(string: "https://www.apple.com")!/*@END_MENU_TOKEN@*/) {
+            NavigationLink(destination: LoginView()) {
                 Text("Already have an account? Log in")
             }
             .padding(.bottom, 50)

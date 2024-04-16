@@ -44,7 +44,7 @@ struct LoginView: View {
             }
             .padding(.bottom, 300)
 
-            Link(destination: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=URL@*/URL(string: "https://www.apple.com")!/*@END_MENU_TOKEN@*/) {
+            NavigationLink(destination: SignupView()) {
                 Text("Don't have an account? Sign up")
             }
             .padding(.bottom, 50)
@@ -68,7 +68,7 @@ struct LoginView: View {
 
 
 
-struct SignupView_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
