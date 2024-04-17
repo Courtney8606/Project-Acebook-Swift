@@ -14,6 +14,7 @@
 import SwiftUI
 
 struct SignupView: View {
+    @State private var _id = ""
     @State private var email = ""
     @State private var username = ""
     @State private var password = ""
@@ -63,13 +64,28 @@ struct SignupView: View {
             }
             .padding(.bottom, 50)
             Button("SUBMIT") {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                guard password == repassword else {
+                                    print("password does not match")
+                    return
+                                }
+                                // Create a User object with the form data
+                let newUser = User(_id: _id, email: email, password: password, username: username)
+                                // Call the postNewUser function to send the user data to the API
+                postNewUser(user: newUser) { success in
+                    if success {
+                                // Redirect to a success page or show a success message
+                        print("User signed up successfully")
+                    }else {
+                                        // Show an error message or handle the failure case
+                        print("Failed to sign up user")
+                                    }
+                                }
             }
             .padding(.bottom, 50)
 
-            NavigationLink(destination: LoginView()) {
-                Text("Already have an account? Log in")
-            }
+          // NavigationLink(destination: LoginView()) {
+            //    Text("Already have an account? Log in")
+           // }
             .padding(.bottom, 50)
             
         }
