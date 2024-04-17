@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftUI
 
-class User: Decodable {
+public struct User: Decodable {
     var _id: String
     var email: String
     var password: String
