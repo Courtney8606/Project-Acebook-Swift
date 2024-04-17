@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F9A87712BCFE1BF00346188 /* GetUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A87702BCFE1BF00346188 /* GetUserInfo.swift */; };
 		316763012BCE9A2C0066B56B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316763002BCE9A2C0066B56B /* SignupView.swift */; };
 		4B961CCE2BCEC4E50085B6E4 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B961CCD2BCEC4E50085B6E4 /* loginView.swift */; };
 		AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85AF2AC8A221009680C6 /* MobileAcebookApp.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F9A87702BCFE1BF00346188 /* GetUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserInfo.swift; sourceTree = "<group>"; };
 		316763002BCE9A2C0066B56B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		4B961CCD2BCEC4E50085B6E4 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		AE5D85AC2AC8A221009680C6 /* MobileAcebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAcebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				AE5D85E02AC9AFA9009680C6 /* AuthenticationService.swift */,
+				5F9A87702BCFE1BF00346188 /* GetUserInfo.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			files = (
 				316763012BCE9A2C0066B56B /* SignupView.swift in Sources */,
 				AE5D85E12AC9AFA9009680C6 /* AuthenticationService.swift in Sources */,
+				5F9A87712BCFE1BF00346188 /* GetUserInfo.swift in Sources */,
 				AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */,
 				AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */,
 				AE5D85E82AC9B29A009680C6 /* User.swift in Sources */,
