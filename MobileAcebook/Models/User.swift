@@ -35,7 +35,7 @@ func getUserInfo(completion: @escaping (User) -> Void) {
     request.httpMethod = "GET"
     
     // Set the Header values, which is the token to authenticate the session
-    let token = "" // Replace this with your actual token you received back from logging in / getting all posts and stored
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTMzNDM4OTgsImV4cCI6MTcxMzM0NDQ5OH0.hN51oZLhW6fXD8aRdGjBGS8xG337BfI-imbQtMqgl9A" // Replace this with your actual token you received back from logging in / getting all posts and stored
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
