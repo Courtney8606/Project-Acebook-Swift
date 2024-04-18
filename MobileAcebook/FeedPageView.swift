@@ -32,71 +32,60 @@ struct FeedPageView: View {
                     }
                 }
                 .padding(.horizontal, 15)
-            }
-            
-            List(postStore.posts, id: \._id) { post in
-                PostRowView(post: post)
-               
-            }
-            .onAppear {
-                print("Posts in List:", postStore.posts)
-            }
-        }
-        .onAppear {
-            postStore.getPosts { fetchedPosts, error in
-                if let error = error {
-                    print("Error fetching posts:", error)
-                } else {
-                    print("Received posts in FeedPageView:", fetchedPosts)
-                }
-            }
-        }
-        }
-    }
-
-
-struct PostRowView: View {
-    let post: Post
-    
-    var body: some View {
-        HStack {
-            VStack {
-                Image("piano")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
-                    .accessibilityIdentifier("piano")
-                    .background(Color.gray)
                 
-                Text("\(post.createdBy.username)")
-                    .font(.system(size: 10))
-            }
-            
-            VStack {
-                Text("Message: \(post.message)")
-                    .multilineTextAlignment(.leading)
-                    .frame(width: 200)
-                    .font(.system(size: 14))
-                
-                Text("\(formattedDate(from: post.createdAt))")
-                    .multilineTextAlignment(.leading)
-                    .frame(width: 200)
-                    .font(.system(size: 14))
-                Text("\(numberLikes(likes: post.likes))")
-                Button("Submit"){
+                List(postStore.posts, id: \._id) { post in
                     
+                    HStack {
+                        VStack {
+                            Image("piano")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                                .accessibilityIdentifier("piano")
+                                .background(Color.gray)
+                            
+                            Text("\(post.createdBy.username)")
+                                .font(.system(size: 10))
+                        }
+                        
+                        VStack {
+                            Text("Message: \(post.message)")
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 200)
+                                .font(.system(size: 14))
+                            
+                            Text("\(formattedDate(from: post.createdAt))")
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 200)
+                                .font(.system(size: 10))
+                            Button("Likes: \(post.likes.count)"){
+                                postStore.likePost(postId: post._id) {newLikes in
+                                    print("Successully liked!")
+                                    postStore.getPosts { fetchedPosts, error in
+                                        print("Successully updated!")
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                    }
                 }
-                Divider()
+                    .onAppear {
+                        postStore.getPosts { fetchedPosts, error in
+                            if let error = error {
+                                print("Error fetching posts:", error)
+                            } else {
+                                print("Received posts in FeedPageView:", fetchedPosts)
+                            }
+                        }
+                }
             }
-            .padding()
         }
     }
 }
+    
 
-func numberLikes(likes: [String]) -> Int {
-    var numLikes = likes.count
-    return numLikes
-}
 
 struct FeedPageView_Previews: PreviewProvider {
     static var previews: some View {
