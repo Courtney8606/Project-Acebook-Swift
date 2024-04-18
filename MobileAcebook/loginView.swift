@@ -15,6 +15,7 @@ struct LoginView: View {
     
 //    Create instance of Authentication service to handle logIn request
     let Auth = AuthenticationService()
+    let userDefaults = UserDefaults.standard
     
     var body: some View {
         NavigationStack {
@@ -47,15 +48,15 @@ struct LoginView: View {
                 Button("SUBMIT") {
                     Auth.logIn(email: email, password: password) { receivedToken in
                         if let receivedToken = receivedToken {
-                            // login successful
-                            print("Logged in successfully with token: \(receivedToken)")
+                            // On login successful:
+                            // Store token in userDefaults
+                            userDefaults.set(receivedToken, forKey: "token")
+                            print("Token stored in userDefaults as \(userDefaults.object(forKey: "token") ?? "default/no token")")
                             // Set navigation state as ready to navigate
                             readyToNavigate = true
-                            // Add storing the token and then navigating below
-                            
                         } else {
-                            // login fail
-                            print("login failed")
+                            // On login fail:
+                            print("Login failed")
                         }
                     }
                 }
