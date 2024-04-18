@@ -36,12 +36,14 @@ struct LoginView: View {
                 
                 TextField("Enter email", text: $email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
                     .padding(.trailing, 40)
                     .padding(.leading, 40)
                     .padding(.bottom, 20)
                 
                 TextField("Enter password",text: $password )
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
                     .padding(.trailing, 40)
                     .padding(.leading, 40)
                     .padding(.bottom, 20)
