@@ -82,12 +82,20 @@ struct PostRowView: View {
                     .multilineTextAlignment(.leading)
                     .frame(width: 200)
                     .font(.system(size: 14))
-                
+                Text("\(numberLikes(likes: post.likes))")
+                Button("Submit"){
+                    
+                }
                 Divider()
             }
             .padding()
         }
     }
+}
+
+func numberLikes(likes: [String]) -> Int {
+    var numLikes = likes.count
+    return numLikes
 }
 
 struct FeedPageView_Previews: PreviewProvider {
