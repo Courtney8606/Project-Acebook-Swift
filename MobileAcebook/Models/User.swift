@@ -20,6 +20,7 @@ class User: Codable {
     var email: String
     var password: String
     var username: String
+    
     init(_id: String, email: String, password: String, username: String) {
         self._id = _id
         self.email = email
@@ -27,8 +28,9 @@ class User: Codable {
         self.username = username
     }
     func constructedUser() -> String {
-        return "User(\(self._id), \"\(self.email)\", \"\(self.password)\", \"\(self.username)\")"
-    }
+            return "User(\(self._id), \"\(self.email)\", \"\(self.password)\", \"\(self.username)\")"
+        }
+    
     
 }
     

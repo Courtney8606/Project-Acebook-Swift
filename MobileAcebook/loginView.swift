@@ -58,16 +58,6 @@ struct LoginView: View {
     } // sign up view
 
 
-
-
-
-
-
-
-
-
-
-
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
