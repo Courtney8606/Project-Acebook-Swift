@@ -31,7 +31,6 @@ public struct User: Codable {
             return "User(\(self._id), \"\(self.email)\", \"\(self.password)\", \"\(self.username)\")"
         }
     
-    
 }
     
     
