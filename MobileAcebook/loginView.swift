@@ -15,6 +15,7 @@ struct LoginView: View {
     
 //    Create instance of Authentication service to handle logIn request
     let Auth = AuthenticationService()
+//    Initialise userDefaults var to get / write token as userDefaults key
     let userDefaults = UserDefaults.standard
     
     var body: some View {
@@ -51,8 +52,13 @@ struct LoginView: View {
                             // On login successful:
                             // Store token in userDefaults
                             userDefaults.set(receivedToken, forKey: "token")
-                            print("Token stored in userDefaults as \(userDefaults.object(forKey: "token") ?? "default/no token")")
-                            // Set navigation state as ready to navigate
+                            // To print the token on login, use:
+                            // print("Token stored in userDefaults as \(userDefaults.object(forKey: "token") ?? "default/no token")")
+                            // Or, to access the token (or any value stored against a key in UserDefaults) in another view, you need to call
+                            // @AppStorage("token") var token: String = ""
+                            // somewhere near the top of your view and then you can access it as token (no quotes) anywhere you want
+                            
+                            // Finally, set navigation state as ready to navigate
                             readyToNavigate = true
                         } else {
                             // On login fail:
