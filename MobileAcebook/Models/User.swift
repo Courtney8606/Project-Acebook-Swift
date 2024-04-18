@@ -15,7 +15,7 @@ import UIKit
 import Foundation
 import SwiftUI
 
-class User: Codable {
+public struct User: Codable {
     var _id: String?
     var email: String
     var password: String
