@@ -10,24 +10,37 @@ import SwiftUI
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
-//    Set readyToNavigate state to false, to track navigation on login
+    //    Set readyToNavigate state to false, to track navigation on login
     @State private var readyToNavigate: Bool = false
     
-//    Create instance of Authentication service to handle logIn request
+    //    Create instance of Authentication service to handle logIn request
     let Auth = AuthenticationService()
-//    Initialise userDefaults var to get / write token as userDefaults key
+    //    Initialise userDefaults var to get / write token as userDefaults key
     let userDefaults = UserDefaults.standard
     
     var body: some View {
-        NavigationStack {
+        
+        NavigationStack{
             VStack {
-                Text("Acebook")
-                    .font(.largeTitle)
-                    .frame(maxWidth: .infinity)
-                    .background(Color(red:241/255, green: 148/255, blue: 138/255))
-                    .padding()
-                
-                Spacer()
+                Spacer(minLength: 150)
+                VStack {
+                    Text("Acebook")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 253/255, green: 210/255, blue: 184/255))
+                        .padding(.bottom, -10)
+                    
+                    ZStack {
+                        Color(red: 253/255, green: 210/255, blue: 184/255)
+                        Image("piano")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .accessibilityIdentifier("piano")
+                            .padding(.bottom, 40)
+                    }
+                }
+                Spacer(minLength: 50)
                 Text("Log in")
                     .font(.title)
                     .foregroundColor(.black)
@@ -48,7 +61,7 @@ struct LoginView: View {
                     .padding(.leading, 40)
                     .padding(.bottom, 20)
                 
-                Button("SUBMIT") {
+                Button {
                     Auth.logIn(email: email, password: password) { receivedToken in
                         if let receivedToken = receivedToken {
                             // On login successful:
@@ -67,8 +80,18 @@ struct LoginView: View {
                             print("Login failed")
                         }
                     }
+                } label: {
+                    Text("SUBMIT")
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(red: 253/255, green: 210/255, blue: 184/255))
+                                .frame(width: 100)
+                        )
                 }
-                .navigationTitle("Navigation")
+                }
+//                .navigationTitle("Navigation")
                 .navigationDestination(isPresented: $readyToNavigate) {
                     FeedPageView()
                 }
@@ -78,11 +101,14 @@ struct LoginView: View {
                     Text("Don't have an account? Sign up")
                 }
                 .padding(.bottom, 50)
-
+                
+                
             }
         }
     }
-} // sign up view
+    
+ // sign up view
+
 
 
 struct LoginView_Previews: PreviewProvider {

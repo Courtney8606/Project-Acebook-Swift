@@ -12,11 +12,13 @@
 		31C802672BCFE78D00B30831 /* PostNewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C802662BCFE78D00B30831 /* PostNewUser.swift */; };
 		4B961CCE2BCEC4E50085B6E4 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B961CCD2BCEC4E50085B6E4 /* loginView.swift */; };
 		5F9A876F2BCFD30F00346188 /* FeedPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A876E2BCFD30F00346188 /* FeedPageView.swift */; };
+
 		88B818E72BD2629300BB3222 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B818E62BD2629300BB3222 /* Posts.swift */; };
 		88B818E92BD262A100BB3222 /* Date_Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B818E82BD262A100BB3222 /* Date_Formatter.swift */; };
 		88B818EB2BD262BA00BB3222 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B818EA2BD262BA00BB3222 /* Post.swift */; };
 		88B818ED2BD2631300BB3222 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B818EC2BD2631300BB3222 /* Comment.swift */; };
 		88B818EF2BD2666200BB3222 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B818EE2BD2666200BB3222 /* Comments.swift */; };
+
 		AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85AF2AC8A221009680C6 /* MobileAcebookApp.swift */; };
 		AE5D85B42AC8A224009680C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5D85B32AC8A224009680C6 /* Assets.xcassets */; };
 		AE5D85B72AC8A224009680C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5D85B62AC8A224009680C6 /* Preview Assets.xcassets */; };
@@ -29,6 +31,7 @@
 		AE5D85E32AC9AFD2009680C6 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E22AC9AFD2009680C6 /* MockAuthenticationService.swift */; };
 		AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */; };
 		AE5D85E82AC9B29A009680C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E72AC9B29A009680C6 /* User.swift */; };
+		BE2AE4032BD2735600AA92B7 /* Image_Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2AE4022BD2735600AA92B7 /* Image_Picker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +57,13 @@
 		31C802662BCFE78D00B30831 /* PostNewUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNewUser.swift; sourceTree = "<group>"; };
 		4B961CCD2BCEC4E50085B6E4 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		5F9A876E2BCFD30F00346188 /* FeedPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageView.swift; sourceTree = "<group>"; };
+
 		88B818E62BD2629300BB3222 /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		88B818E82BD262A100BB3222 /* Date_Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date_Formatter.swift; sourceTree = "<group>"; };
 		88B818EA2BD262BA00BB3222 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		88B818EC2BD2631300BB3222 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		88B818EE2BD2666200BB3222 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+
 		AE5D85AC2AC8A221009680C6 /* MobileAcebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAcebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5D85AF2AC8A221009680C6 /* MobileAcebookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAcebookApp.swift; sourceTree = "<group>"; };
 		AE5D85B32AC8A224009680C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		AE5D85E22AC9AFD2009680C6 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		AE5D85E72AC9B29A009680C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BE2AE4022BD2735600AA92B7 /* Image_Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_Picker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,12 +200,15 @@
 		AE5D85DF2AC9AF83009680C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				88B818EA2BD262BA00BB3222 /* Post.swift */,
+  			88B818EA2BD262BA00BB3222 /* Post.swift */,
 				88B818E82BD262A100BB3222 /* Date_Formatter.swift */,
 				88B818E62BD2629300BB3222 /* Posts.swift */,
 				AE5D85E72AC9B29A009680C6 /* User.swift */,
 				88B818EC2BD2631300BB3222 /* Comment.swift */,
 				88B818EE2BD2666200BB3222 /* Comments.swift */,
+
+				BE2AE4022BD2735600AA92B7 /* Image_Picker.swift */,
+
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -343,13 +352,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				316763012BCE9A2C0066B56B /* SignupView.swift in Sources */,
+				BE2AE4032BD2735600AA92B7 /* Image_Picker.swift in Sources */,
 				5F9A876F2BCFD30F00346188 /* FeedPageView.swift in Sources */,
 				AE5D85E12AC9AFA9009680C6 /* AuthenticationService.swift in Sources */,
+
 				88B818E72BD2629300BB3222 /* Posts.swift in Sources */,
 				88B818EB2BD262BA00BB3222 /* Post.swift in Sources */,
+
 				AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */,
+				5FC9C6332BD265590056E555 /* Posts.swift in Sources */,
 				31C802672BCFE78D00B30831 /* PostNewUser.swift in Sources */,
 				AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */,
+				5FC9C6312BD265590056E555 /* Date_Formatter.swift in Sources */,
 				AE5D85E82AC9B29A009680C6 /* User.swift in Sources */,
 				88B818ED2BD2631300BB3222 /* Comment.swift in Sources */,
 				4B961CCE2BCEC4E50085B6E4 /* loginView.swift in Sources */,
