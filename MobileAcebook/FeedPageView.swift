@@ -19,7 +19,6 @@ struct FeedPageView: View {
     var body: some View {
         VStack {
             VStack {
-                Spacer().frame(height: 80)
                 Text("View all posts")
                     .frame(maxWidth: .infinity)
                     .font(.system(size: 30))
@@ -27,10 +26,18 @@ struct FeedPageView: View {
             }
             .background(Color(red: 253/255, green: 210/255, blue: 184/255))
             VStack {
-                Section(header: Text("Create Post")) {
-                    HStack{
-                        TextField("Enter message", text:$message)
-                        Button("Submit"){
+                Section() {
+                    HStack {
+                        HStack {
+                            TextField("Enter message", text:$message, axis: .vertical)
+
+                        }
+                        .padding(.horizontal, 15)
+                        .frame(minHeight: 50)
+                        
+                        Spacer()
+                        
+                        Button("Post"){
                             guard !message.isEmpty else { return }
                             token = userDefaults.object(forKey: "token") as! String
                             postStore.createPost(token: token, message: message) { newToken, newMessage in
@@ -40,6 +47,7 @@ struct FeedPageView: View {
                             }
                             message = ""
                         }
+                        .padding(.trailing, 15)
                     }
                 }
                 .padding(.horizontal, 15)
