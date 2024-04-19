@@ -10,6 +10,10 @@ import SwiftUI
 struct FeedPageView: View {
     @ObservedObject var postStore = PostStore()
     @State var message = ""
+    @State var token = ""
+    
+    //    Initialise userDefaults var to get / write token as userDefaults key
+    let userDefaults = UserDefaults.standard
     
     var body: some View {
         VStack {
@@ -27,8 +31,11 @@ struct FeedPageView: View {
                         TextField("Enter message", text:$message)
                         Button("Submit"){
                             guard !message.isEmpty else { return }
-                            postStore.createPost(message: message) {newPosts in
+                            token = userDefaults.object(forKey: "token") as! String
+                            postStore.createPost(token: token, message: message) { newToken, newMessage in
                                 print("Post created successfully!")
+                                userDefaults.set(newToken, forKey: "token")
+                                token = newToken
                             }
                             message = ""
                         }
@@ -36,7 +43,7 @@ struct FeedPageView: View {
                 }
                 .padding(.horizontal, 15)
                 
-                List(postStore.posts, id: \._id) { post in
+                List($postStore.posts, id: \._id) { post in
                     
                     HStack {
                         VStack {
@@ -57,18 +64,19 @@ struct FeedPageView: View {
                                 .frame(width: 200)
                                 .font(.system(size: 14))
                             
-                            Text("\(formattedDate(from: post.createdAt))")
-                                .multilineTextAlignment(.leading)
-                                .frame(width: 200)
-                                .font(.system(size: 10))
-                            Button(action: {
-                                postStore.likePost(postId: post._id) {newLikes in
-                                    print("Successully liked!")
-                                    postStore.getPosts { fetchedPosts, error in
-                                        print("Successully updated!")
-                                    }
-                                }
-                            }) {
+//                            Text("\(formattedDate(from: post.createdAt))")
+//                                .multilineTextAlignment(.leading)
+//                                .frame(width: 200)
+//                                .font(.system(size: 10))
+//                            Button(action: {
+//                                postStore.likePost(postId: post._id) {newLikes in
+//                                    print("Successully liked!")
+//                                    token = userDefaults.object(forKey: "token") as! String
+//                                    postStore.getPosts(token:token) { fetchedPosts, error in
+//                                        print("Successully updated!")
+//                                    }
+//                                }
+//                            }) {
                                 HStack {
                                     Image("like")
                                         .resizable()
@@ -81,7 +89,8 @@ struct FeedPageView: View {
                     }
                 }
                     .onAppear {
-                        postStore.getPosts { fetchedPosts, error in
+                        token = userDefaults.object(forKey: "token") as! String
+                        postStore.getPosts(token:token) { fetchedPosts, token, error in
                             if let error = error {
                                 print("Error fetching posts:", error)
                             } else {
@@ -92,7 +101,7 @@ struct FeedPageView: View {
             }
         }
     }
-}
+
     
 
 
