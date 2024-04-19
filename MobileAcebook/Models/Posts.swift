@@ -12,28 +12,28 @@ import Foundation
 class PostStore: ObservableObject {
     
     @Published var posts: [Post] = []
+    var token: String = ""
     
     struct PostsResponse: Decodable {
         let posts: [Post]
         let token: String
     }
     
-    func getPosts(completion: @escaping ([Post], Error?) -> Void) {
+    func getPosts(token: String, completion: @escaping ([Post], String, Error?) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA"
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Error: \(error)")
-                completion([], error)
+                completion([], "", error)
                 return
             }
             guard let data = data else {
                 print("No data received")
                 let emptyResponseError = NSError(domain: "YourDomain", code: 1001, userInfo: nil)
-                completion([], emptyResponseError)
+                completion([], "", emptyResponseError)
                 return
             }
             print("Received data:", String(data: data, encoding: .utf8) ?? "")
@@ -44,25 +44,29 @@ class PostStore: ObservableObject {
                 let response = try decoder.decode(PostsResponse.self, from: data)
                 DispatchQueue.main.async {
                     self.posts = response.posts
+                    self.token = response.token
                     print(self.posts)
-                    completion(response.posts, nil)
+                    completion(response.posts, response.token, nil)
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
-                completion([], error)
+                completion([], "", error)
             }
             
         }
         task.resume()
     }
+
+    struct CreatePostResponse: Decodable {
+        let message: String
+        let token: String
+    }
     
-    
-    func createPost(message: String, completion: @escaping ([Post]) -> Void) {
+    func createPost(token: String, message: String, completion: @escaping (String, String) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA"
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters: [String:Any] = ["message":message]
+        let parameters: [String:Any] = ["token":token, "message":message]
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
             print("Error converting parameters to JSON data")
             return
@@ -80,13 +84,29 @@ class PostStore: ObservableObject {
                 print("No data received")
                 return
             }
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            do {
+                let response = try decoder.decode(CreatePostResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self.token = response.token
+                }
+                
+            } catch {
+                print("Error decoding JSON: \(error)")
+                completion("", "")
+            }
+                
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.getPosts { updatedPosts, error in
+                self.getPosts(token: token) { updatedPosts, token, error in
                     if let error = error {
                         // Handle error
                         print("Error fetching posts:", error)
                     } else {
-                        completion(updatedPosts)
+                        completion(token, "")
                         print("Updated Posts:", updatedPosts)
                     }
                 }
@@ -95,12 +115,11 @@ class PostStore: ObservableObject {
         task.resume()
     }
     
-    func likePost(postId: String, completion: @escaping ([Post]) -> Void) {
+    func likePost(token: String, postId: String, completion: @escaping ([Post]) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA"
+        let parameters: [String:Any] = ["token":token, "postId":postId]
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters: [String:Any] = ["postId":postId]
         guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
             print("Error converting parameters to JSON data")
             return
@@ -118,7 +137,7 @@ class PostStore: ObservableObject {
                 return
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.getPosts { updatedPosts, error in
+                self.getPosts(token: token) { updatedPosts, token, error in
                     if let error = error {
                         // Handle error
                         print("Error fetching posts:", error)
