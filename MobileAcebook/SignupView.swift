@@ -100,7 +100,7 @@ struct SignupView: View {
                 Button {
                 guard !email.isEmpty, !username.isEmpty, !password.isEmpty, !repassword.isEmpty else {
                        print("Please fill in all fields")
-                       return
+                        return
                    }
                guard password == repassword else {
                    print("password does not match")
@@ -133,9 +133,9 @@ struct SignupView: View {
                 .navigationDestination(isPresented: $shouldNavigateToLogin) {
                     LoginView()
                        }
-                NavigationLink(destination: LoginView()) {
-                    Text("Already have an account? Loged in")
-                }
+                // NavigationLink(destination: LoginView()) {
+                //    Text("Already have an account? Loged in")
+                //}
                 
             } //end of vstack
             

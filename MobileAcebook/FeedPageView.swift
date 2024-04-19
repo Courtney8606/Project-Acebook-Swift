@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-
 struct FeedPageView: View {
+
     @ObservedObject var postStore = PostStore()
     @State var message = ""
     @State var token = ""
@@ -108,6 +108,7 @@ struct FeedPageView: View {
                     }
                 }
             }
+          }
         }
     }
     
@@ -116,4 +117,3 @@ struct FeedPageView: View {
             FeedPageView()
         }
     }
-}
