@@ -42,7 +42,7 @@ struct SignupView: View {
                         .accessibilityIdentifier("piano")
                 }
             }
-            Spacer(minLength: 50)
+            Spacer(minLength: 90)
                 Text("Sign up")
                     .font(.title)
                     .foregroundColor(.black)
@@ -89,14 +89,15 @@ struct SignupView: View {
                }
                let newUser = User(_id: "", email: email, password: password, username: username)
                 print("Before postNewUser is called")
-               postNewUser(user: newUser) { result in
-                   switch result {
-                       case .success(let statusCode):
-                           shouldNavigateToLogin = true
-                           print("Successfully created user with status code: \(statusCode)")
-                       case .failure(let error):
-                           print("Error creating user: \(error)")
-                       }
+                    postNewUser(user: newUser) { result in
+                        switch result {
+                        case .success(let statusCode):
+                            shouldNavigateToLogin = true
+                            print("Successfully created user with status code: \(statusCode)")
+                        case .failure(let error):
+                            print("Error creating user: \(error)")
+                        }
+                    }
                } label: {
                 Text("SUBMIT")
                         .foregroundColor(.black)
@@ -109,7 +110,7 @@ struct SignupView: View {
                 }
                   
            }
-                .navigationTitle("Navigation")
+//                .navigationTitle("Navigation")
                 .navigationDestination(isPresented: $shouldNavigateToLogin) {
                     LoginView()
                        }
@@ -123,7 +124,7 @@ struct SignupView: View {
         
     }
     
-    } // sign up view
+    // sign up view
 
 
 
