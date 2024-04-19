@@ -15,7 +15,7 @@ public struct GetUserResponse: Decodable {
 func getUserInfo(completion: @escaping (User) -> Void) {
     var request = URLRequest(url: URL(string: "http://localhost:3000/users")!)
     // Set the Header values, which is the token to authenticate the session
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxZTQ0YWE5ZGRjNmQ4ZTVjZDZiYmU5IiwiaWF0IjoxNzEzMzQ5NTE3LCJleHAiOjE3MTMzNTAxMTd9.qBV4FeLspNT2rXu8lGO0TPdQWCTfxfmnb2t6fKdZ-fI" // Replace this with your actual token you received back from logging in / getting all posts and stored
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA" // Replace this with your actual token you received back from logging in / getting all posts and stored
     request.httpMethod = "GET"
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     

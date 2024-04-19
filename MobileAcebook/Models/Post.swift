@@ -13,7 +13,9 @@ class Post: Decodable {
     var message: String
     var createdAt: String
     var createdBy: CreatedBy
+    var imgUrl: String?
     var likes: [String]
+   
     
     struct CreatedBy: Decodable { // Add a nested struct for createdBy
         var _id: String
@@ -22,11 +24,12 @@ class Post: Decodable {
     }
     
     
-    init(_id:String, message: String, createdAt: String, createdBy: CreatedBy, likes: [String]){
+    init(_id:String, message: String, createdAt: String, createdBy: CreatedBy, imgUrl: String, likes: [String]){
         self._id = _id
         self.message = message
         self.createdAt = createdAt
         self.createdBy = createdBy
+        self.imgUrl = imgUrl
         self.likes = likes
     }
     

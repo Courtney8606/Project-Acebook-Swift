@@ -27,6 +27,7 @@
 		AE5D85E32AC9AFD2009680C6 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E22AC9AFD2009680C6 /* MockAuthenticationService.swift */; };
 		AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */; };
 		AE5D85E82AC9B29A009680C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E72AC9B29A009680C6 /* User.swift */; };
+		BE2AE4032BD2735600AA92B7 /* Image_Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2AE4022BD2735600AA92B7 /* Image_Picker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		AE5D85E22AC9AFD2009680C6 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		AE5D85E72AC9B29A009680C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BE2AE4022BD2735600AA92B7 /* Image_Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_Picker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				5FC9C62F2BD265590056E555 /* Post.swift */,
 				5FC9C6302BD265590056E555 /* Posts.swift */,
 				AE5D85E72AC9B29A009680C6 /* User.swift */,
+				BE2AE4022BD2735600AA92B7 /* Image_Picker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				316763012BCE9A2C0066B56B /* SignupView.swift in Sources */,
+				BE2AE4032BD2735600AA92B7 /* Image_Picker.swift in Sources */,
 				5F9A876F2BCFD30F00346188 /* FeedPageView.swift in Sources */,
 				AE5D85E12AC9AFA9009680C6 /* AuthenticationService.swift in Sources */,
 				5FC9C6322BD265590056E555 /* Post.swift in Sources */,
