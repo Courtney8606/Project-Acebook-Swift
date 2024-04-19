@@ -8,12 +8,22 @@
 import Foundation
 import SwiftUI
 struct LoginView: View {
-    @State private var username = ""
-    @State private var password = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
+//    Set readyToNavigate state to false, to track navigation on login
+    @State private var readyToNavigate: Bool = false
+    
+//    Create instance of Authentication service to handle logIn request
+    let Auth = AuthenticationService()
+//    Initialise userDefaults var to get / write token as userDefaults key
+    let userDefaults = UserDefaults.standard
+    
     var body: some View {
-        VStack {
-            Spacer(minLength: 80)
+      
+        NavigationStack{
             VStack {
+              Spacer(minLength: 80)
+              VStack {
                 Text("Acebook")
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
@@ -31,28 +41,46 @@ struct LoginView: View {
                 }
             }
             Spacer(minLength: 50)
-
             Text("Log in")
                 .font(.title)
                 .foregroundColor(.black)
                 .padding(.trailing, 240)
-            
 
-            TextField("Enter username", text: $username)
+
+            TextField("Enter email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
                 .padding(.trailing, 40)
                 .padding(.leading, 40)
                 .padding(.bottom, 20)
-            
+
             TextField("Enter password",text: $password )
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
                 .padding(.trailing, 40)
                 .padding(.leading, 40)
                 .padding(.bottom, 20)
-     
+
             Button {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-            } label: {
+                Auth.logIn(email: email, password: password) { receivedToken in
+                    if let receivedToken = receivedToken {
+                        // On login successful:
+                        // Store token in userDefaults
+                        userDefaults.set(receivedToken, forKey: "token")
+                        // To print the token on login, use:
+                        // print("Token stored in userDefaults as \(userDefaults.object(forKey: "token") ?? "default/no token")")
+                        // Or, to access the token (or any value stored against a key in UserDefaults) in another view, you need to call
+                        // @AppStorage("token") var token: String = ""
+                        // somewhere near the top of your view and then you can access it as token (no quotes) anywhere you want
+
+                        // Finally, set navigation state as ready to navigate
+                        readyToNavigate = true
+                    } else {
+                        // On login fail:
+                        print("Login failed")
+                    }
+                }
+              label: {
                 Text("SUBMIT")
                         .foregroundColor(.black)
                         .padding()
@@ -63,29 +91,23 @@ struct LoginView: View {
                         )
                 }
             }
+            .navigationTitle("Navigation")
+            .navigationDestination(isPresented: $readyToNavigate) {
+                FeedPageView()
+            }
             .padding(.bottom, 300)
 
             NavigationLink(destination: SignupView()) {
                 Text("Don't have an account? Sign up")
             }
             .padding(.bottom, 50)
-            
+
+
+            }
         }
-        
     }
-    
-    
-    
-     // sign up view
 
-
-
-
-
-
-
-
-
+} // sign up view
 
 
 
