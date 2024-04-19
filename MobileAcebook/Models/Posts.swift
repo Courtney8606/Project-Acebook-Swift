@@ -116,45 +116,40 @@ class PostStore: ObservableObject {
         task.resume()
     }
     
-    func LikePost() {
-        return
+    func likePost(token: String, postId: String, completion: @escaping ([Post]) -> Void) {
+        var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
+        let parameters: [String:Any] = ["token":token, "postId":postId]
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            print("Error converting parameters to JSON data")
+            return
+        }
+        request.httpBody = jsonData
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.getPosts(token: token) { updatedPosts, token, error in
+                    if let error = error {
+                        // Handle error
+                        print("Error fetching posts:", error)
+                    } else {
+                        completion(updatedPosts)
+                        print("Updated Posts:", updatedPosts)
+                    }
+                }
+            }
+        }
+        task.resume()
     }
-    
-//    func likePost(postId: String, completion: @escaping ([Post]) -> Void) {
-//        var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-//        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxZmQ5ODBiZWMwNjFmNjg3ZTM5ZDVlIiwiaWF0IjoxNzEzNDUzODczLCJleHAiOjE3MTM0ODk4NzN9.s9TBSSA3uu6D3g263IZnH170wyslOl-r8hbxznovPi4"
-//        request.httpMethod = "PUT"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        let parameters: [String:Any] = ["postId":postId]
-//        guard let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
-//            print("Error converting parameters to JSON data")
-//            return
-//        }
-//        request.httpBody = jsonData
-//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-//        
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            if let error = error {
-//                print("Error: \(error)")
-//                return
-//            }
-//            guard let data = data else {
-//                print("No data received")
-//                return
-//            }
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//                self.getPosts { updatedPosts, error in
-//                    if let error = error {
-//                        // Handle error
-//                        print("Error fetching posts:", error)
-//                    } else {
-//                        completion(updatedPosts)
-//                        print("Updated Posts:", updatedPosts)
-//                    }
-//                }
-//            }
-//        }
-//        task.resume()
-//    }
 
 }

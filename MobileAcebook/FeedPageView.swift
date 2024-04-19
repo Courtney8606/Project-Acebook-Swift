@@ -18,13 +18,13 @@ struct FeedPageView: View {
     var body: some View {
         VStack {
             VStack {
-            Spacer().frame(height: 80)
-            Text("View all posts")
-                .frame(maxWidth: .infinity)
-                .font(.system(size: 30))
-                .padding(.bottom, 20)
-        }
-        .background(Color(red: 253/255, green: 210/255, blue: 184/255))
+                Spacer().frame(height: 80)
+                Text("View all posts")
+                    .frame(maxWidth: .infinity)
+                    .font(.system(size: 30))
+                    .padding(.bottom, 20)
+            }
+            .background(Color(red: 253/255, green: 210/255, blue: 184/255))
             VStack {
                 Section(header: Text("Create Post")) {
                     HStack{
@@ -52,7 +52,7 @@ struct FeedPageView: View {
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
                                 .accessibilityIdentifier("profile")
-//
+                            //
                             
                             Text("\(post.createdBy.username.wrappedValue)")
                                 .font(.system(size: 10))
@@ -64,19 +64,19 @@ struct FeedPageView: View {
                                 .frame(width: 200)
                                 .font(.system(size: 14))
                             
-//                            Text("\(formattedDate(from: post.createdAt))")
-//                                .multilineTextAlignment(.leading)
-//                                .frame(width: 200)
-//                                .font(.system(size: 10))
-//                            Button(action: {
-//                                postStore.likePost(postId: post._id) {newLikes in
-//                                    print("Successully liked!")
-//                                    token = userDefaults.object(forKey: "token") as! String
-//                                    postStore.getPosts(token:token) { fetchedPosts, error in
-//                                        print("Successully updated!")
-//                                    }
-//                                }
-//                            }) {
+                            Text("\(formattedDate(from: post.createdAt.wrappedValue))")
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 200)
+                                .font(.system(size: 10))
+                            Button(action: {
+                                postStore.likePost(token: token, postId: post._id.wrappedValue) {newLikes in
+                                    print("Successully liked!")
+                                    token = userDefaults.object(forKey: "token") as! String
+                                    postStore.getPosts(token:token) { fetchedPosts, token, error in
+                                        print("Successully updated!")
+                                    }
+                                }
+                            }) {
                                 HStack {
                                     Image("like")
                                         .resizable()
@@ -88,27 +88,26 @@ struct FeedPageView: View {
                         }
                     }
                 }
-                    .onAppear {
-                        token = userDefaults.object(forKey: "token") as! String
-                        postStore.getPosts(token:token) { fetchedPosts, token, error in
-                            if let error = error {
-                                print("Error fetching posts:", error)
-                            } else {
-                                print("Received posts in FeedPageView:", fetchedPosts)
-                            }
+                .onAppear {
+                    token = userDefaults.object(forKey: "token") as! String
+                    postStore.getPosts(token:token) { fetchedPosts, token, error in
+                        if let error = error {
+                            print("Error fetching posts:", error)
+                        } else {
+                            print("Received posts in FeedPageView:", fetchedPosts)
                         }
+                    }
                 }
             }
         }
     }
-
     
-
-
-struct FeedPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedPageView()
+    
+    
+    
+    struct FeedPageView_Previews: PreviewProvider {
+        static var previews: some View {
+            FeedPageView()
+        }
     }
 }
-
-    
