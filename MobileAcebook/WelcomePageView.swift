@@ -21,19 +21,40 @@ struct WelcomePageView: View {
                     
                     Spacer()
                     
-                    Image("makers-logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-                        .accessibilityIdentifier("makers-logo")
+                    ZStack {
+                        Circle()
+                            .fill(Color(red: 253/255, green: 210/255, blue: 184/255))
+                            .frame(width: 240, height: 240)
+                        
+                        Image("piano")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .accessibilityIdentifier("piano")
+                            .padding(.leading, 30)
+                    }
                     
                     Spacer()
                     
                     NavigationLink(destination: SignupView()) {
                         Text("Sign Up")
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(red: 253/255, green: 210/255, blue: 184/255))
+                                    .frame(width: 100)
+                            )
                     }
                     NavigationLink(destination: LoginView()) {
                         Text("Log in")
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(red: 253/255, green: 210/255, blue: 184/255))
+                                    .frame(width: 100)
+                            )
                     }
                     Spacer()
                 }

@@ -22,20 +22,27 @@ struct SignupView: View {
     @State private var shouldNavigateToLogin: Bool = false
     
     var body: some View {
+      
         NavigationStack{
             VStack {
                 
+                VStack {
                 Text("Acebook")
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
-                    .background(Color(red:241/255, green: 148/255, blue: 138/255))
-                    .padding()
-                Image("piano")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .accessibilityIdentifier("piano")
-                Spacer()
+                    .background(Color(red: 253/255, green: 210/255, blue: 184/255))
+                    .padding(.bottom, -10) // Adjust the negative padding as needed
+
+                ZStack {
+                    Color(red: 253/255, green: 210/255, blue: 184/255)
+                    Image("piano")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .accessibilityIdentifier("piano")
+                }
+            }
+            Spacer(minLength: 50)
                 Text("Sign up")
                     .font(.title)
                     .foregroundColor(.black)
@@ -61,13 +68,17 @@ struct SignupView: View {
                     .padding(.bottom)
                 
                 HStack {
-                    Text("Upload a profile picture")
-                    Button(action:{})
-                    {Image("attachment-icon")}
+                Text("Upload a profile picture")
+                Button(action: {}) {
+                    Image("upload")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
                 }
+            }
                 .padding(.bottom, 50)
                 
-                Button("SUBMIT") {
+                Button {
                 guard !email.isEmpty, !username.isEmpty, !password.isEmpty, !repassword.isEmpty else {
                        print("Please fill in all fields")
                        return
@@ -86,7 +97,17 @@ struct SignupView: View {
                        case .failure(let error):
                            print("Error creating user: \(error)")
                        }
-               }
+               } label: {
+                Text("SUBMIT")
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(red: 253/255, green: 210/255, blue: 184/255))
+                                .frame(width: 100)
+                        )
+                }
+                  
            }
                 .navigationTitle("Navigation")
                 .navigationDestination(isPresented: $shouldNavigateToLogin) {
