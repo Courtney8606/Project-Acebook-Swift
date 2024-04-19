@@ -46,12 +46,12 @@ struct FeedPageView: View {
                 List($postStore.posts, id: \._id) { post in
                     HStack {
                         VStack {
+                            
                             Image("profile")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
                                 .accessibilityIdentifier("profile")
-                            //
                             
                             Text("\(post.createdBy.username.wrappedValue)")
                                 .font(.system(size: 10))
