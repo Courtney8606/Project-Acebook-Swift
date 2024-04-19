@@ -18,8 +18,11 @@ struct SignupView: View {
     @State private var email = ""
     @State private var username = ""
     @State private var password = ""
+    @State private var imgUrl = ""
     @State private var repassword = ""
     @State private var shouldNavigateToLogin: Bool = false
+    @State private var selectedImage: UIImage?
+    @State private var isShowingImagePicker = false
     
     var body: some View {
       
@@ -35,11 +38,20 @@ struct SignupView: View {
 
                 ZStack {
                     Color(red: 253/255, green: 210/255, blue: 184/255)
-                    Image("piano")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200, height: 200)
-                        .accessibilityIdentifier("piano")
+                    if let image = selectedImage {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 200, height: 200)
+                                } else {
+                                    Image("piano")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 200, height: 200)
+                                        .accessibilityIdentifier("piano")
+                                }
+        
+                       
                 }
             }
             Spacer(minLength: 90)
@@ -69,11 +81,18 @@ struct SignupView: View {
                 
                 HStack {
                 Text("Upload a profile picture")
-                Button(action: {}) {
+                Button(action: {
+                    isShowingImagePicker = true
+                    print("Button tapped")
+                   
+                }) {
                     Image("upload")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 20, height: 20)
+                }
+                .sheet(isPresented: $isShowingImagePicker) {
+                    ImagePicker(selectedImage: $selectedImage, imageName: $imgUrl)
                 }
             }
                 .padding(.bottom, 50)
@@ -87,7 +106,7 @@ struct SignupView: View {
                    print("password does not match")
                    return
                }
-               let newUser = User(_id: "", email: email, password: password, username: username)
+                    let newUser = User(_id: "", email: email, password: password, username: username, imgUrl: imgUrl)
                 print("Before postNewUser is called")
                     postNewUser(user: newUser) { result in
                         switch result {

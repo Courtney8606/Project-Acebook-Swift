@@ -11,7 +11,8 @@ struct FeedPageView: View {
     @ObservedObject var postStore = PostStore()
     @State var message = ""
     @State var token = ""
-    
+    @State private var selectedImage: UIImage?
+
     //    Initialise userDefaults var to get / write token as userDefaults key
     let userDefaults = UserDefaults.standard
     
@@ -46,12 +47,21 @@ struct FeedPageView: View {
                 List($postStore.posts, id: \._id) { post in
                     HStack {
                         VStack {
-                            
-                            Image("profile")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 50, height: 50)
-                                .accessibilityIdentifier("profile")
+
+                            //Currently returning placeholder image 
+                            // Async doesn't work - url is currently pulling a jpeg file name, need to save images either locally in assets or in e.g. Cloudinary
+                            AsyncImage(url: URL(string: post.createdBy.profilePicture)) { image in
+                                                    image.resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 50, height: 50)
+                                                        .clipShape(Circle())
+                                                } placeholder: {
+                                                    Image("profile")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 50, height: 50)
+                                                        .clipShape(Circle())
+                                                }
                             
                             Text("\(post.createdBy.username.wrappedValue)")
                                 .font(.system(size: 10))
