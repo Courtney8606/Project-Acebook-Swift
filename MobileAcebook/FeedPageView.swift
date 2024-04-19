@@ -54,12 +54,12 @@ struct FeedPageView: View {
                                 .accessibilityIdentifier("profile")
 //
                             
-                            Text("\(post.createdBy.username)")
+                            Text("\(post.createdBy.username.wrappedValue)")
                                 .font(.system(size: 10))
                         }
                         
                         VStack {
-                            Text("Message: \(post.message)")
+                            Text("Message: \(post.message.wrappedValue)")
                                 .multilineTextAlignment(.leading)
                                 .frame(width: 200)
                                 .font(.system(size: 14))
