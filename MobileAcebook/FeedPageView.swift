@@ -13,11 +13,14 @@ struct FeedPageView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 30)
+            VStack {
+            Spacer().frame(height: 80)
             Text("View all posts")
+                .frame(maxWidth: .infinity)
                 .font(.system(size: 30))
-            Spacer().frame(height: 30)
-            Divider()
+                .padding(.bottom, 20)
+        }
+        .background(Color(red: 253/255, green: 210/255, blue: 184/255))
             VStack {
                 Section(header: Text("Create Post")) {
                     HStack{
@@ -37,11 +40,11 @@ struct FeedPageView: View {
                     
                     HStack {
                         VStack {
-                            Image("piano")
+                            Image("piano2")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
-                                .accessibilityIdentifier("piano")
+                                .accessibilityIdentifier("piano2")
                                 .background(Color.gray)
                             
                             Text("\(post.createdBy.username)")
@@ -58,14 +61,20 @@ struct FeedPageView: View {
                                 .multilineTextAlignment(.leading)
                                 .frame(width: 200)
                                 .font(.system(size: 10))
-                            Button("Likes: \(post.likes.count)"){
+                            Button(action: {
                                 postStore.likePost(postId: post._id) {newLikes in
                                     print("Successully liked!")
                                     postStore.getPosts { fetchedPosts, error in
                                         print("Successully updated!")
                                     }
                                 }
-                                
+                            }) {
+                                HStack {
+                                    Image("like")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                    Text("\(post.likes.count)")
+                                }
                             }
                             
                         }

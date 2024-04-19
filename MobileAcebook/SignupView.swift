@@ -21,17 +21,23 @@ struct SignupView: View {
     var body: some View {
         VStack {
             
-            Text("Acebook")
-                .font(.largeTitle)
-                .frame(maxWidth: .infinity)
-                .background(Color(red:241/255, green: 148/255, blue: 138/255))
-                .padding()
-            Image("piano")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-                .accessibilityIdentifier("piano")
-            Spacer()
+            VStack {
+                Text("Acebook")
+                    .font(.largeTitle)
+                    .frame(maxWidth: .infinity)
+                    .background(Color(red: 253/255, green: 210/255, blue: 184/255))
+                    .padding(.bottom, -10) // Adjust the negative padding as needed
+
+                ZStack {
+                    Color(red: 253/255, green: 210/255, blue: 184/255)
+                    Image("piano")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .accessibilityIdentifier("piano")
+                }
+            }
+            Spacer(minLength: 50)
             Text("Sign up")
                 .font(.title)
                 .foregroundColor(.black)
@@ -58,12 +64,26 @@ struct SignupView: View {
             
             HStack {
                 Text("Upload a profile picture")
-                Button(action:{})
-                {Image("attachment-icon")}
+                Button(action: {}) {
+                    Image("upload")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                }
             }
             .padding(.bottom, 50)
-            Button("SUBMIT") {
+            Button {
                 /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+            } label: {
+                Text("SUBMIT")
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(red: 253/255, green: 210/255, blue: 184/255))
+                                .frame(width: 100)
+                        )
+                }
             }
             .padding(.bottom, 50)
 
@@ -78,7 +98,7 @@ struct SignupView: View {
     
     
     
-    } // sign up view
+     // sign up view
 
 
 
