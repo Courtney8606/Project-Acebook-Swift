@@ -22,7 +22,6 @@ class PostStore: ObservableObject {
     func getPosts(token: String, completion: @escaping ([Post], String, Error?) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
         request.httpMethod = "GET"
-        let parameters: [String:Any] = ["token":token]
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
