@@ -40,12 +40,12 @@ struct FeedPageView: View {
                     
                     HStack {
                         VStack {
-                            Image("piano2")
+                            Image("profile")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
-                                .accessibilityIdentifier("piano2")
-                                .background(Color.gray)
+                                .accessibilityIdentifier("profile")
+//
                             
                             Text("\(post.createdBy.username)")
                                 .font(.system(size: 10))
