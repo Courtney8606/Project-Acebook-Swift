@@ -101,9 +101,6 @@ struct FeedPageView: View {
         }
     }
     
-    
-    
-    
     struct FeedPageView_Previews: PreviewProvider {
         static var previews: some View {
             FeedPageView()
