@@ -44,7 +44,6 @@ struct FeedPageView: View {
                 .padding(.horizontal, 15)
                 
                 List($postStore.posts, id: \._id) { post in
-                    
                     HStack {
                         VStack {
                             Image("profile")
