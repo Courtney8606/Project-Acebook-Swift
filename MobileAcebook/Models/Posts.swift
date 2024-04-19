@@ -20,7 +20,7 @@ class PostStore: ObservableObject {
     
     func getPosts(completion: @escaping ([Post], Error?) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxZmQ5ODBiZWMwNjFmNjg3ZTM5ZDVlIiwiaWF0IjoxNzEzNDUzODczLCJleHAiOjE3MTM0ODk4NzN9.s9TBSSA3uu6D3g263IZnH170wyslOl-r8hbxznovPi4"
+        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA"
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
@@ -59,7 +59,7 @@ class PostStore: ObservableObject {
     
     func createPost(message: String, completion: @escaping ([Post]) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxZmQ5ODBiZWMwNjFmNjg3ZTM5ZDVlIiwiaWF0IjoxNzEzNDUzODczLCJleHAiOjE3MTM0ODk4NzN9.s9TBSSA3uu6D3g263IZnH170wyslOl-r8hbxznovPi4"
+        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA"
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters: [String:Any] = ["message":message]
@@ -97,7 +97,7 @@ class PostStore: ObservableObject {
     
     func likePost(postId: String, completion: @escaping ([Post]) -> Void) {
         var request = URLRequest(url: URL(string: "http://localhost:3000/posts")!)
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYxZmQ5ODBiZWMwNjFmNjg3ZTM5ZDVlIiwiaWF0IjoxNzEzNDUzODczLCJleHAiOjE3MTM0ODk4NzN9.s9TBSSA3uu6D3g263IZnH170wyslOl-r8hbxznovPi4"
+        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjYyMjRlMTIwYzBlNjNhYmRhMTUxNzNlIiwiaWF0IjoxNzEzNTI0Mjg4LCJleHAiOjE3MTM1NjAyODh9.AHPliMxJMeavoJa8_uWycgY-LNhLGh0-VC-Y2-vIrLA"
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters: [String:Any] = ["postId":postId]
