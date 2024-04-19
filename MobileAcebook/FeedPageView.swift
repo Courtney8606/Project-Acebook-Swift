@@ -50,7 +50,7 @@ struct FeedPageView: View {
 
                             //Currently returning placeholder image 
                             // Async doesn't work - url is currently pulling a jpeg file name, need to save images either locally in assets or in e.g. Cloudinary
-                            AsyncImage(url: URL(string: post.createdBy.profilePicture)) { image in
+                            AsyncImage(url: URL(string: post.createdBy.profilePicture.wrappedValue)) { image in
                                                     image.resizable()
                                                         .scaledToFit()
                                                         .frame(width: 50, height: 50)
